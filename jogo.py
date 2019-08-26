@@ -8,7 +8,6 @@ import platform
 import time
 from os import system
 
-cont = 0
 JOGADOR = -1
 COMPUTADOR = +1
 tabuleiro = [
@@ -102,25 +101,13 @@ def minimax(estadoTabuleiro, profundidade, player):
 
     # Percorre as células vazias
     # Cada célula possui uma posição [x,y]
-    # print('-- Best Score:')
-    # print(best)
-    # global cont
-    # cont += 1
-    # print(cont)
-    # print('-- Células Vazias:')
-    # print(celulasVazias(estadoTabuleiro))
-
     for celula in celulasVazias(estadoTabuleiro):
         x, y = celula[0], celula[1]
         estadoTabuleiro[x][y] = player
         # Recursidade para avançar entre as camadas da árvore
         # Cada camada representa um player diferente
         
-        # print('profundidade: ' + str(profundidade))
-        
         score = minimax(estadoTabuleiro, profundidade - 1, -player)
-        
-        # print('score: ' + str(score))
         
         estadoTabuleiro[x][y] = 0
         score[0], score[1] = x, y
@@ -169,7 +156,6 @@ def vezDoComputador(simboloComputador, simboloJogador):
         return
 
     # clearConsole()
-    # print('ENTROU:')
     print(f'VEZ DO COMPUTADOR[{simboloComputador}]')
     apresentaTabuleiro(tabuleiro, simboloComputador, simboloJogador)
 
@@ -181,8 +167,8 @@ def vezDoComputador(simboloComputador, simboloJogador):
         x, y = move[0], move[1]
 
     setarMovimento(x, y, COMPUTADOR)
-    # Tempo de espera de 0.5 segundos
-    time.sleep(0.5)
+    # Tempo de espera de 1 segundos
+    time.sleep(1)
 
 
 # O jogador escolhe uma posição válida no tabuleiro
